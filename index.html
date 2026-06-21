@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daniel.IA | Tu acompañamiento digital con Inteligencia Artificial</title>
+  <meta name="description" content="Tienes una idea pero no sabes por dónde empezar. Daniel escucha tu idea, la desarrolla con IA y te acompaña hasta que el resultado sea exactamente lo que imaginabas."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --azul: #2563eb;
+      --azul-oscuro: #1e40af;
+      --azul-claro: #eff6ff;
+      --violeta: #7c3aed;
+      --verde: #10b981;
+      --gris-claro: #f8fafc;
+      --gris-medio: #e2e8f0;
+      --gris-texto: #64748b;
+      --negro: #0f172a;
+      --blanco: #ffffff;
+      --radio: 14px;
+      --sombra: 0 4px 24px rgba(37,99,235,0.10);
+    }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      background: var(--negro);
+      color: #cbd5e1;
+      font-size: 0.82rem;
+      padding: 8px 0;
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .topbar a { color: #94a3b8; }
+    .topbar span { display: flex; align-items: center; gap: 6px; }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gris-medio);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--negro);
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--azul); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+    .nav-links a { color: #475569; transition: color .2s; }
+    .nav-links a:hover { color: var(--azul); }
+    .nav-cta {
+      background: var(--azul);
+      color: var(--blanco) !important;
+      padding: 9px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .nav-cta:hover { background: var(--azul-oscuro) !important; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
+      padding: 90px 24px 80px;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--azul-claro);
+      color: var(--azul);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--negro);
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--azul);
+    }
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--gris-texto);
+      margin-bottom: 16px;
+      max-width: 500px;
+    }
+    .hero-bold {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--negro);
+      margin-bottom: 32px;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--azul);
+      color: var(--blanco);
+      padding: 14px 28px;
+      border-radius: var(--radio);
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--azul-oscuro); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--azul);
+      padding: 14px 28px;
+      border-radius: var(--radio);
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid var(--azul);
+      cursor: pointer;
+      transition: all .2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: var(--azul-claro); }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .stat strong {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--negro);
+      letter-spacing: -0.5px;
+    }
+    .stat span { font-size: 0.82rem; color: var(--gris-texto); }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+    }
+    .chat-card {
+      background: var(--blanco);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(37,99,235,0.15);
+      max-width: 380px;
+      width: 100%;
+    }
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--gris-medio);
+    }
+    .chat-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--azul), var(--violeta));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+    .chat-name { font-weight: 700; font-size: 0.95rem; }
+    .chat-status { font-size: 0.75rem; color: var(--verde); font-weight: 500; }
+    .chat-bubble {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      margin-bottom: 10px;
+      max-width: 90%;
+      line-height: 1.5;
+    }
+    .bubble-user {
+      background: var(--gris-claro);
+      color: var(--negro);
+      border-bottom-left-radius: 3px;
+    }
+    .bubble-daniel {
+      background: linear-gradient(135deg, var(--azul), var(--violeta));
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 3px;
+    }
+    .chat-time { font-size: 0.7rem; color: var(--gris-texto); text-align: right; margin-top: 4px; }
+
+    /* ===== SECCIÓN GENÉRICA ===== */
+    .section { padding: 80px 24px; }
+    .section-alt { background: var(--gris-claro); }
+    .section-dark { background: var(--negro); color: var(--blanco); }
+    .container { max-width: 1200px; margin: auto; }
+    .section-label {
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--azul);
+      margin-bottom: 12px;
+    }
+    h2 {
+      text-align: center;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--negro);
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+    .section-dark h2 { color: var(--blanco); }
+    .section-subtitle {
+      text-align: center;
+      color: var(--gris-texto);
+      max-width: 580px;
+      margin: 0 auto 56px;
+      font-size: 1.05rem;
+    }
+    .section-dark .section-subtitle { color: #94a3b8; }
+    .divider {
+      width: 48px;
+      height: 4px;
+      background: var(--azul);
+      border-radius: 4px;
+      margin: 0 auto 16px;
+    }
+
+    /* ===== PROPUESTA DE VALOR ===== */
+    .valor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .valor-card {
+      background: var(--blanco);
+      border: 1px solid var(--gris-medio);
+      border-radius: var(--radio);
+      padding: 32px 28px;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .valor-card:hover { box-shadow: var(--sombra); transform: translateY(-4px); }
+    .valor-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--azul-claro);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+    .valor-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: var(--negro); }
+    .valor-card p { font-size: 0.9rem; color: var(--gris-texto); line-height: 1.65; }
+
+    /* ===== CÓMO FUNCIONA ===== */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      position: relative;
+    }
+    .step {
+      text-align: center;
+      padding: 24px 16px;
+    }
+    .step-num {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--azul), var(--violeta));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin: 0 auto 18px;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 0.88rem; color: #94a3b8; line-height: 1.6; }
+    .section-dark .step h3 { color: var(--blanco); }
+
+    /* ===== SERVICIOS ===== */
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .servicio-card {
+      background: var(--blanco);
+      border: 1px solid var(--gris-medio);
+      border-radius: var(--radio);
+      padding: 32px 28px;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .servicio-card:hover { box-shadow: var(--sombra); border-color: var(--azul); }
+    .servicio-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--azul), var(--violeta));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+    }
+    .servicio-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; color: var(--negro); }
+    .servicio-card p { font-size: 0.88rem; color: var(--gris-texto); margin-bottom: 20px; line-height: 1.65; }
+    .link-solicitar {
+      color: var(--azul);
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .link-solicitar:hover { gap: 8px; }
+
+    /* ===== BANNER MÉTRICAS ===== */
+    .banner-metricas {
+      background: linear-gradient(135deg, var(--negro) 0%, #1e1b4b 100%);
+      padding: 80px 24px;
+      color: white;
+    }
+    .banner-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .banner-metricas h2 { text-align: left; color: white; font-size: clamp(1.5rem, 3vw, 2rem); }
+    .banner-metricas p { color: #94a3b8; margin-top: 12px; font-size: 0.95rem; }
+    .metricas-lista { display: flex; flex-direction: column; gap: 22px; }
+    .metrica-item label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: white;
+    }
+    .barra-fondo {
+      background: rgba(255,255,255,0.12);
+      border-radius: 100px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .barra-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--azul), var(--violeta));
+    }
+
+    /* ===== TESTIMONIOS ===== */
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .testimonio-card {
+      background: var(--blanco);
+      border: 1px solid var(--gris-medio);
+      border-radius: var(--radio);
+      padding: 32px;
+      position: relative;
+    }
+    .quote-icon {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 3rem;
+      color: var(--azul-claro);
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+    .testimonio-texto {
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonio-autor strong { display: block; font-size: 0.95rem; font-weight: 700; color: var(--negro); }
+    .testimonio-autor span { font-size: 0.8rem; color: var(--gris-texto); }
+    .estrellas { color: #f59e0b; font-size: 0.9rem; margin-bottom: 14px; }
+
+    /* ===== PRECIOS ===== */
+    .precios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+    .precio-card {
+      background: var(--blanco);
+      border: 2px solid var(--gris-medio);
+      border-radius: var(--radio);
+      padding: 36px 28px;
+      position: relative;
+      transition: box-shadow .2s;
+    }
+    .precio-card:hover { box-shadow: var(--sombra); }
+    .precio-card.destacado {
+      border-color: var(--azul);
+      box-shadow: 0 8px 40px rgba(37,99,235,0.18);
+    }
+    .badge-popular {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--azul);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 16px;
+      border-radius: 100px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .precio-card h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gris-texto); margin-bottom: 10px; }
+    .precio-valor {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--negro);
+      margin-bottom: 2px;
+      letter-spacing: -1px;
+    }
+    .precio-valor .tachado { font-size: 1rem; color: #94a3b8; text-decoration: line-through; font-weight: 400; margin-left: 8px; }
+    .precio-nota { font-size: 0.8rem; color: var(--gris-texto); margin-bottom: 24px; }
+    .precio-lista {
+      list-style: none;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .precio-lista li {
+      font-size: 0.87rem;
+      color: #475569;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .precio-lista li::before { content: "✓"; color: var(--verde); font-weight: 700; flex-shrink: 0; }
+    .btn-precio {
+      display: block;
+      text-align: center;
+      width: 100%;
+      padding: 13px;
+      border-radius: var(--radio);
+      font-weight: 700;
+      font-size: 0.95rem;
+      background: var(--azul);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-precio:hover { background: var(--azul-oscuro); }
+    .btn-precio.outline {
+      background: transparent;
+      border: 2px solid var(--azul);
+      color: var(--azul);
+    }
+    .btn-precio.outline:hover { background: var(--azul-claro); }
+
+    /* ===== CONTACTO ===== */
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contacto-info h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--negro); }
+    .contacto-info p { color: var(--gris-texto); font-size: 0.95rem; line-height: 1.7; margin-bottom: 28px; }
+    .contacto-dato {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+    .dato-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--azul-claro);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .form-card {
+      background: var(--blanco);
+      border: 1px solid var(--gris-medio);
+      border-radius: var(--radio);
+      padding: 36px;
+      box-shadow: var(--sombra);
+    }
+    .form-titulo { font-size: 1.1rem; font-weight: 700; margin-bottom: 24px; color: var(--negro); }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.83rem; font-weight: 600; color: #475569; margin-bottom: 6px; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--gris-medio);
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      color: var(--negro);
+      transition: border-color .2s;
+      background: var(--blanco);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--azul);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .btn-form {
+      width: 100%;
+      padding: 14px;
+      background: var(--azul);
+      color: white;
+      border: none;
+      border-radius: var(--radio);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+      font-family: inherit;
+    }
+    .btn-form:hover { background: var(--azul-oscuro); transform: translateY(-1px); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--negro);
+      color: #94a3b8;
+      padding: 64px 24px 32px;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .footer-brand .logo { color: white; display: block; margin-bottom: 12px; }
+    .footer-brand p { font-size: 0.87rem; line-height: 1.7; max-width: 260px; }
+    .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      background: #1e293b;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: background .2s;
+    }
+    .social-btn:hover { background: var(--azul); }
+    .footer-col h4 { color: white; font-size: 0.88rem; font-weight: 700; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 0.87rem; color: #64748b; transition: color .2s; }
+    .footer-col ul li a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 28px auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: #475569;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ===== WHATSAPP FLOTANTE ===== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 56px;
+      height: 56px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      z-index: 999;
+      font-size: 1.6rem;
+      transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { order: -1; }
+      .banner-inner { grid-template-columns: 1fr; }
+      .banner-metricas h2 { text-align: center; }
+      .contacto-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .topbar-inner { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span>✉️ <a href="mailto:hola@danielia.cl">hola@danielia.cl</a></span>
+      <span>📍 Chile — Atención 100% Online</span>
+      <span>🕐 Lunes a Sábado · Respuesta en menos de 2 hrs</span>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">Daniel<span>.IA</span></a>
+      <ul class="nav-links">
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#precios">Precios</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">✦ Acompañamiento Digital con IA · Chile</div>
+        <h1>Tu idea en internet, <em>sin complicaciones</em> y con alguien que te acompaña</h1>
+        <p>No necesitas saber de tecnología. Cuéntame tu idea como se te ocurra — yo la entiendo, la desarrollo con inteligencia artificial y no me voy hasta que quede exactamente como la imaginaste.</p>
+        <p class="hero-bold">¿Sin presupuesto para una agencia grande? Eso está bien. Aquí trabajamos diferente.</p>
+        <div class="hero-btns">
+          <a href="#contacto" class="btn-primary">Iniciar mi proyecto →</a>
+          <a href="#precios" class="btn-outline">Ver planes</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>+100%</strong>
+            <span>Dedicación personalizada</span>
+          </div>
+          <div class="stat">
+            <strong>IA</strong>
+            <span>Resultados profesionales</span>
+          </div>
+          <div class="stat">
+            <strong>Sin</strong>
+            <span>Jerga técnica</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simulación de conversación -->
+      <div class="hero-visual">
+        <div class="chat-card">
+          <div class="chat-header">
+            <div class="chat-avatar">D</div>
+            <div>
+              <div class="chat-name">Daniel · Daniel.IA</div>
+              <div class="chat-status">● En línea ahora</div>
+            </div>
+          </div>
+          <div class="chat-bubble bubble-user">
+            "Quiero una página web para mi negocio pero no sé bien qué poner ni cómo hacerla..."
+          </div>
+          <div class="chat-time">Tú · hace un momento</div>
+          <br/>
+          <div class="chat-bubble bubble-daniel">
+            Perfecto, eso es exactamente por donde empezamos. Cuéntame de tu negocio y yo me encargo del resto 🚀
+          </div>
+          <div class="chat-time" style="color:rgba(255,255,255,0.5); text-align:left; margin-left:auto; width:fit-content;">Daniel · ahora</div>
+          <br/>
+          <div class="chat-bubble bubble-user">
+            "Tengo una peluquería en Temuco y quiero que me encuentren en Google..."
+          </div>
+          <div class="chat-time">Tú · justo ahora</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROPUESTA DE VALOR ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Por qué Daniel.IA</div>
+      <h2>No vendes tecnología. Vendes tranquilidad.</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Aquí no hay formularios fríos ni paquetes de 20 páginas que no entiendes. Hay una persona real que te escucha.</p>
+      <div class="valor-grid">
+        <div class="valor-card">
+          <div class="valor-icon">🎧</div>
+          <h3>Te escucho primero</h3>
+          <p>Antes de tocar una línea de código, me siento contigo a entender qué necesitas de verdad. No asumo nada.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">🤖</div>
+          <h3>IA que trabaja para ti</h3>
+          <p>Uso inteligencia artificial para crear textos, diseños y estrategias que antes costaban el triple. Tú te beneficias del precio.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">🤝</div>
+          <h3>No te suelto hasta que quede bien</h3>
+          <p>No entrego y desaparezco. Me quedo contigo en cada ajuste hasta que estés 100% conforme con el resultado.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">💸</div>
+          <h3>Presupuesto real</h3>
+          <p>Sin letra chica, sin mensualidades escondidas. Precios honestos para pymes y emprendedores, no para corporaciones.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">🧭</div>
+          <h3>Cero tecnicismos</h3>
+          <p>Explico todo en palabras que entiende cualquier persona. Si algo no tiene sentido para ti, lo explico de nuevo.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">⚡</div>
+          <h3>Rápido y profesional</h3>
+          <p>La IA permite entregar proyectos en días, no en meses. Calidad profesional a velocidad real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CÓMO FUNCIONA ===== -->
+  <section class="section section-dark" id="como-funciona">
+    <div class="container">
+      <div class="section-label" style="color:#7c3aed">El proceso</div>
+      <h2>Así funciona trabajar con Daniel</h2>
+      <div class="divider" style="background: var(--violeta)"></div>
+      <p class="section-subtitle">Simple, humano y sin sorpresas.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Me cuentas tu idea</h3>
+          <p>No importa si está poco clara o si no sabes exactamente qué necesitas. Cuéntame con tus palabras.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Te propongo un plan</h3>
+          <p>Transformo tu idea en un plan concreto y te explico qué vamos a construir, cuánto cuesta y cuánto tarda.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>La IA construye</h3>
+          <p>Uso herramientas de inteligencia artificial para crear tu sitio, tus textos y tu estrategia digital.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Revisamos juntos</h3>
+          <p>Te muestro avances. Cambias lo que quieras. Ajustamos hasta que quede exactamente como lo imaginaste.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <h3>Lanzamos y quedas listo</h3>
+          <p>Publico tu sitio, te enseño a usarlo y me quedo disponible para dudas. Nunca quedas solo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICIOS ===== -->
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-label">Lo que hago</div>
+      <h2>Servicios digitales con IA</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">
+      <div class="servicios-grid">
+        <div class="servicio-card">
+          <div class="servicio-icon">🌐</div>
+          <h3>Página Web con IA</h3>
+          <p>Diseño y desarrollo tu sitio web completo: textos, imágenes, estructura y SEO. Todo optimizado para que Google te encuentre.</p>
+          <a href="#contacto" class="link-solicitar">Solicitar info →</a>
+        </div>
+        <div class="servicio-card">
+          <div class="servicio-icon">🚀</div>
+          <h3>Landing Page Express</h3>
+          <p>Una página de ventas poderosa, lista en días. Perfecta para captar clientes con un solo objetivo claro.</p>
+          <a href="#contacto" class="link-solicitar">Solicitar info →</a>
+        </div>
+        <div class="servicio-card">
+          <div class="servicio-icon">🔍</div>
+          <h3>SEO + Contenido con IA</h3>
+          <p>Aparece en Google cuando te buscan. Creo textos y estrategias de contenido que posicionan tu negocio.</p>
+          <a href="#contacto" class="link-solicitar">Solicitar info →</a>
+        </div>
+        <div class="servicio-card">
+          <div class="servicio-icon">🎨</div>
+          <h3>Logo e Identidad Visual</h3>
+          <p>Tu marca desde cero: logo, paleta de colores y tipografía. Profesional, coherente y tuyo.</p>
+          <a href="#contacto" class="link-solicitar">Solicitar info →</a>
+        </div>
+        <div class="servicio-card">
+          <div class="servicio-icon">🛒</div>
+          <h3>Tienda Online</h3>
+          <p>Vende por internet sin complicaciones. Configuro tu catálogo, los pagos y todo lo que necesitas para empezar a vender hoy.</p>
+          <a href="#contacto" class="link-solicitar">Solicitar info →</a>
+        </div>
+        <div class="servicio-card">
+          <div class="servicio-icon">📱</div>
+          <h3>Presencia en Redes Sociales</h3>
+          <p>Configuro tus perfiles, creo contenido inicial con IA y te enseño a mantenerlos sin que te consuma el tiempo.</p>
+          <a href="#contacto" class="link-solicitar">Solicitar info →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BANNER MÉTRICAS ===== -->
+  <section class="banner-metricas">
+    <div class="banner-inner">
+      <div>
+        <h2>Resultados reales para negocios reales</h2>
+        <p>No trabajo con grandes corporaciones. Trabajo con personas como tú: emprendedores, dueños de pymes y personas que quieren dar el primer paso digital sin complicarse la vida.</p>
+        <br/>
+        <a href="#contacto" class="btn-primary" style="margin-top:8px">Quiero empezar →</a>
+      </div>
+      <div class="metricas-lista">
+        <div class="metrica-item">
+          <label><span>Satisfacción de clientes</span><span>98%</span></label>
+          <div class="barra-fondo"><div class="barra-fill" style="width:98%"></div></div>
+        </div>
+        <div class="metrica-item">
+          <label><span>Proyectos entregados a tiempo</span><span>95%</span></label>
+          <div class="barra-fondo"><div class="barra-fill" style="width:95%"></div></div>
+        </div>
+        <div class="metrica-item">
+          <label><span>Velocidad de carga del sitio</span><span>99%</span></label>
+          <div class="barra-fondo"><div class="barra-fill" style="width:99%"></div></div>
+        </div>
+        <div class="metrica-item">
+          <label><span>Clientes que repiten o refieren</span><span>80%</span></label>
+          <div class="barra-fondo"><div class="barra-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIOS ===== -->
+  <section class="section" id="testimonios">
+    <div class="container">
+      <div class="section-label">Lo que dicen</div>
+      <h2>Clientes que llegaron con una idea y se fueron con un negocio</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Personas reales, resultados reales.</p>
+      <div class="testimonios-grid">
+        <div class="testimonio-card">
+          <div class="quote-icon">"</div>
+          <div class="estrellas">★★★★★</div>
+          <p class="testimonio-texto">"Yo no sabía nada de páginas web. Le conté a Daniel lo que hacía con mi negocio de catering y en menos de una semana tenía un sitio profesional que me da vergüenza decir que me costó tan poco."</p>
+          <div class="testimonio-autor">
+            <strong>María Jesús Araya</strong>
+            <span>Catering & Eventos · Santiago, Chile</span>
+          </div>
+        </div>
+        <div class="testimonio-card">
+          <div class="quote-icon">"</div>
+          <div class="estrellas">★★★★★</div>
+          <p class="testimonio-texto">"Lo que más valoro es que nunca me habló en tecnicismos. Siempre supe qué estaba pasando. El resultado fue exactamente lo que imaginé y ahora aparezco en Google cuando buscan mi rubro."</p>
+          <div class="testimonio-autor">
+            <strong>Roberto Fuentes</strong>
+            <span>Taller Mecánico · Concepción, Chile</span>
+          </div>
+        </div>
+        <div class="testimonio-card">
+          <div class="quote-icon">"</div>
+          <div class="estrellas">★★★★★</div>
+          <p class="testimonio-texto">"Intenté con dos agencias antes y me dejaron a medias. Con Daniel fue diferente desde el primer mensaje. Se nota que le importa que quede bien, no solo cobrar."</p>
+          <div class="testimonio-autor">
+            <strong>Catalina Muñoz</strong>
+            <span>Psicóloga Independiente · Temuco, Chile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRECIOS ===== -->
+  <section class="section section-alt" id="precios">
+    <div class="container">
+      <div class="section-label">Inversión</div>
+      <h2>Planes claros, sin letra chica</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Sin mensualidades obligatorias. Sin sorpresas. Pagas una vez y es tuyo.</p>
+      <div class="precios-grid">
+
+        <div class="precio-card">
+          <h3>Landing Page</h3>
+          <div class="precio-valor">$120.000 <span class="tachado">$150.000</span></div>
+          <p class="precio-nota">Pago único · Sin mensualidad</p>
+          <ul class="precio-lista">
+            <li>1 página profesional con IA</li>
+            <li>Textos y contenido incluidos</li>
+            <li>Optimizada para Google (SEO básico)</li>
+            <li>Formulario de contacto</li>
+            <li>Hosting 1 año incluido</li>
+            <li>Diseño 100% personalizado</li>
+            <li>Entrega en 3–5 días hábiles</li>
+          </ul>
+          <a href="#contacto" class="btn-precio outline">Elegir este plan</a>
+        </div>
+
+        <div class="precio-card destacado">
+          <div class="badge-popular">⭐ Más elegido</div>
+          <h3>Sitio Web Completo</h3>
+          <div class="precio-valor">$250.000 <span class="tachado">$300.000</span></div>
+          <p class="precio-nota">Pago único · Sin mensualidad</p>
+          <ul class="precio-lista">
+            <li>4 a 8 páginas o secciones</li>
+            <li>Textos generados con IA</li>
+            <li>SEO optimizado por sección</li>
+            <li>Galería de imágenes</li>
+            <li>Hasta 10 servicios o productos</li>
+            <li>Mapa de ubicación Google</li>
+            <li>2 formularios de contacto</li>
+            <li>3 correos corporativos</li>
+            <li>Hosting + dominio 1 año</li>
+            <li>Acompañamiento post-entrega 30 días</li>
+          </ul>
+          <a href="#contacto" class="btn-precio">Elegir este plan</a>
+        </div>
+
+        <div class="precio-card">
+          <h3>Presencia Digital Total</h3>
+          <div class="precio-valor">$380.000 <span class="tachado">$450.000</span></div>
+          <p class="precio-nota">Pago único · Sin mensualidad</p>
+          <ul class="precio-lista">
+            <li>Todo lo del plan Completo</li>
+            <li>Tienda online o catálogo</li>
+            <li>Logo e identidad visual</li>
+            <li>Configuración de redes sociales</li>
+            <li>Estrategia SEO avanzada</li>
+            <li>Hasta 25 páginas o secciones</li>
+            <li>Correos corporativos ilimitados</li>
+            <li>Acompañamiento post-entrega 60 días</li>
+            <li>PDF instructivo + videollamada de entrega</li>
+          </ul>
+          <a href="#contacto" class="btn-precio outline">Elegir este plan</a>
+        </div>
+
+      </div>
+      <p style="text-align:center; margin-top:28px; color:var(--gris-texto); font-size:0.88rem;">¿No sabes cuál plan necesitas? <a href="#contacto" style="color:var(--azul); font-weight:600">Escríbeme y te oriento sin compromiso →</a></p>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTO ===== -->
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="section-label">Hablemos</div>
+      <h2>Envíame tu consulta</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Sin formularios fríos. Solo cuéntame qué necesitas y yo me encargo del resto.</p>
+      <div class="contacto-grid">
+        <div class="contacto-info">
+          <h3>¿Tienes una idea? Eso es todo lo que necesitas.</h3>
+          <p>No hace falta que tengas claro todo el proyecto. Llega con lo que tienes — aunque sea una frase — y conversamos. Mi trabajo es transformar esa idea en algo real.</p>
+          <div class="contacto-dato">
+            <div class="dato-icon">✉️</div>
+            <span>hola@danielia.cl</span>
+          </div>
+          <div class="contacto-dato">
+            <div class="dato-icon">📱</div>
+            <span>(+56) 9 XXXX XXXX · WhatsApp disponible</span>
+          </div>
+          <div class="contacto-dato">
+            <div class="dato-icon">📍</div>
+            <span>Chile · Atención 100% Online</span>
+          </div>
+          <div class="contacto-dato">
+            <div class="dato-icon">🕐</div>
+            <span>Lunes a Sábado · Respuesta en menos de 2 hrs</span>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-titulo">Cuéntame tu idea 👇</div>
+          <form>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Tu nombre</label>
+                <input type="text" placeholder="María González" />
+              </div>
+              <div class="form-group">
+                <label>Tu email</label>
+                <input type="email" placeholder="tu@correo.cl" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>¿A qué se dedica tu negocio?</label>
+              <input type="text" placeholder="Ej: Tengo una peluquería en Temuco..." />
+            </div>
+            <div class="form-group">
+              <label>¿Qué necesitas?</label>
+              <select>
+                <option value="">Selecciona una opción</option>
+                <option>Landing Page</option>
+                <option>Sitio Web Completo</option>
+                <option>Tienda Online</option>
+                <option>Logo e Identidad Visual</option>
+                <option>SEO / Aparecer en Google</option>
+                <option>No sé bien, necesito orientación</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Cuéntame tu idea (sin filtros)</label>
+              <textarea placeholder="No importa si no está clara todavía. Escribe lo que se te venga a la mente sobre lo que necesitas..."></textarea>
+            </div>
+            <button type="submit" class="btn-form">Enviar mensaje →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">Daniel<span>.IA</span></span>
+        <p>Acompañamiento digital con inteligencia artificial para pymes, emprendedores y personas que quieren presencia en internet sin complicaciones. Desde Chile para todo el mundo.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">f</a>
+          <a href="#" class="social-btn">in</a>
+          <a href="#" class="social-btn">ig</a>
+          <a href="#" class="social-btn">✕</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Página Web con IA</a></li>
+          <li><a href="#servicios">Landing Page Express</a></li>
+          <li><a href="#servicios">Tienda Online</a></li>
+          <li><a href="#servicios">SEO con IA</a></li>
+          <li><a href="#servicios">Logo e Identidad</a></li>
+          <li><a href="#servicios">Redes Sociales</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rubros</h4>
+        <ul>
+          <li><a href="#">Web para Peluquerías</a></li>
+          <li><a href="#">Web para Psicólogos</a></li>
+          <li><a href="#">Web para Talleres</a></li>
+          <li><a href="#">Web para Restaurantes</a></li>
+          <li><a href="#">Web para Abogados</a></li>
+          <li><a href="#">Web para Emprendedores</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="#">📍 Chile · Online</a></li>
+          <li><a href="mailto:hola@danielia.cl">✉️ hola@danielia.cl</a></li>
+          <li><a href="#">📱 WhatsApp</a></li>
+          <li><a href="#">🕐 Lun–Sáb: 9:00–22:00</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Daniel.IA · Todos los derechos reservados</span>
+      <span>Hecho con IA · Diseñado con 💙 en Chile</span>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP FLOTANTE ===== -->
+  <a href="https://wa.me/56900000000?text=Hola%20Daniel%2C%20quiero%20saber%20más%20sobre%20tus%20servicios" target="_blank" class="whatsapp-float" title="Chatear por WhatsApp">
+    💬
+  </a>
+
+</body>
+</html>
